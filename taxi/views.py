@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -8,8 +8,9 @@ from .models import Driver, Car, Manufacturer
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
 from taxi.forms import RegistrationForm, UserLoginForm, UserPasswordResetForm, UserSetPasswordForm, \
-    UserPasswordChangeForm
+    UserPasswordChangeForm, BookingForm
 from django.contrib.auth import logout
+
 
 
 def index(request):
@@ -42,8 +43,29 @@ def contact_us(request):
     return render(request, 'pages/contact-us.html')
 
 
-def author(request):
-    return render(request, 'pages/author.html')
+def rent_car(request, car_id):
+    print("Helooo")
+    car = get_object_or_404(Car, id=car_id)
+
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.car = car
+            booking.save()
+            return redirect('success')
+    else:
+        form = BookingForm()
+
+    return render(request, 'taxi/rent_form.html', {'form': form, 'car': car})
+
+
+def success(request):
+    return render(request, 'taxi/success.html')
+
+
+# def author(request):
+#     return render(request, 'pages/rent_form.html')
 
 
 # class ManufacturerListView(LoginRequiredMixin, generic.ListView):

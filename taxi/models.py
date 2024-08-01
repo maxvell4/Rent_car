@@ -29,9 +29,22 @@ class Driver(AbstractUser):
 
 
 class Car(models.Model):
+    image = models.ImageField(upload_to='cars/', blank=True, null=True)
+    price_per_day = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     model = models.CharField(max_length=255)
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
     drivers = models.ManyToManyField(Driver, related_name="cars")
 
     def __str__(self):
         return self.model
+
+
+class Booking(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+
+    def __str__(self):
+        return f"Booking for {self.car} from {self.start_date} to {self.end_date}"

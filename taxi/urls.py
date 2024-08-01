@@ -6,7 +6,6 @@ from .views import (
     index,
     about_us,
     contact_us,
-    author,
     presentation,
 )
 
@@ -14,7 +13,9 @@ urlpatterns = [
     path("", index, name="index"),
     path('about-us/', about_us, name='about-us'),
     path('contact-us/', contact_us, name='contact-us'),
-    path('author/', author, name='author'),
+    path('rent/<int:car_id>/', views.rent_car, name='rent_car'),
+    path('success/', views.success, name='success'),
+
     # Authentication
     path('accounts/login/', views.UserLoginView.as_view(), name='login'),
     path('accounts/register/', views.register, name='register'),
