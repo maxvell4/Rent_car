@@ -30,6 +30,7 @@ class Driver(AbstractUser):
 
 class Car(models.Model):
     image = models.ImageField(upload_to='cars/', blank=True, null=True)
+    # image_inside = models.ImageField(upload_to='car_inside/', blank=True, null=True)
     price_per_day = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     model = models.CharField(max_length=255)
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
@@ -37,6 +38,14 @@ class Car(models.Model):
 
     def __str__(self):
         return self.model
+
+
+class CarInsideImage(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='inside_images')
+    image_inside = models.ImageField(upload_to='car_inside/')
+
+    def __str__(self):
+        return f"Image of {self.car.model}"
 
 
 class Booking(models.Model):

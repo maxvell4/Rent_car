@@ -4,13 +4,12 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Driver, Car, Manufacturer
+from .models import Driver, Car, Manufacturer, CarInsideImage
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
 from taxi.forms import RegistrationForm, UserLoginForm, UserPasswordResetForm, UserSetPasswordForm, \
     UserPasswordChangeForm, BookingForm
 from django.contrib.auth import logout
-
 
 
 def index(request):
@@ -58,6 +57,17 @@ def rent_car(request, car_id):
         form = BookingForm()
 
     return render(request, 'taxi/rent_form.html', {'form': form, 'car': car})
+
+
+def car_details(request, car_id):
+    car = get_object_or_404(Car, id=car_id)
+    return render(request, 'taxi/car_detail.html', {"car": car})
+
+
+def car_photo(request, car_id):
+    car = get_object_or_404(CarInsideImage, id=car_id)
+    inside_images = car.inside_images.all()
+    return render(request, 'car_detail.html', {'car': car, 'inside_images': inside_images})
 
 
 def success(request):

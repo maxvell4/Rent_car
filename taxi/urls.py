@@ -15,6 +15,7 @@ urlpatterns = [
     path('contact-us/', contact_us, name='contact-us'),
     path('rent/<int:car_id>/', views.rent_car, name='rent_car'),
     path('success/', views.success, name='success'),
+    path('car/<int:car_id>/', views.car_details, name='car_detail'),
 
     # Authentication
     path('accounts/login/', views.UserLoginView.as_view(), name='login'),

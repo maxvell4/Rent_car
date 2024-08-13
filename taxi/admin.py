@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Driver, Car, Manufacturer
+from .models import Driver, Car, Manufacturer, CarInsideImage
 
 
 @admin.register(Driver)
@@ -25,10 +25,16 @@ class DriverAdmin(UserAdmin):
     )
 
 
+class CarInsideImageInline(admin.TabularInline):
+    model = CarInsideImage
+    extra = 3
+
+
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
     search_fields = ("model",)
     list_filter = ("manufacturer",)
+    inlines = [CarInsideImageInline]
 
 
 admin.site.register(Manufacturer)
