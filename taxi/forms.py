@@ -75,7 +75,7 @@ class UserPasswordChangeForm(PasswordChangeForm):
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['car', 'start_date', 'end_date', 'name', 'email']
+        fields = ['start_date', 'end_date', 'name', 'email']
         widgets = {
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'end_date': forms.DateInput(attrs={'type': 'date'}),

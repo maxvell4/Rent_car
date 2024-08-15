@@ -43,7 +43,6 @@ def contact_us(request):
 
 
 def rent_car(request, car_id):
-    print("Helooo")
     car = get_object_or_404(Car, id=car_id)
 
     if request.method == 'POST':
