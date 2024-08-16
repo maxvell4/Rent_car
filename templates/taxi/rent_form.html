@@ -1,14 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Rent Car</title>
-</head>
-<body>
-    <h1>Book {{ car }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+{% extends 'layouts/base_sections.html' %}
+{% load static %}
+
+{% block title %} Rent car {% endblock title %}
+
+{% block body %} class="index-page bg-gray-200" {% endblock body %}
+
+{% block content %}
+<header class="bg-gradient-light">
+  <div class="page-header min-vh-75" style="background-image: url('{% static "img/blog7-2.jpg" %}');">
+    <span class="mask bg-gradient-info opacity-2"></span>
+
+    <div class="col-3 mx-auto">
+
+        <h1>Book {{ car }}</h1>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Submit</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock content %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        function startCountUp(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                const countUp = new CountUp(id, element.getAttribute("countTo"));
+                if (!countUp.error) {
+                    countUp.start();
+                } else {
+                    console.error(countUp.error);
+                }
+            }
+        }
+
+        startCountUp('state1');
+        startCountUp('state2');
+        startCountUp('state3');
+    });
+</script>
+{% endblock javascripts %}
