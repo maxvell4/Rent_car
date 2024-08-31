@@ -8,19 +8,17 @@
 {% block content %}
 <header class="bg-gradient-light">
   <div class="page-header min-vh-75" style="background-image: url('{% static "img/blog7-2.jpg" %}');">
-    <span class="mask bg-gradient-info opacity-2"></span>
-
-    <div class="col-3 mx-auto">
+  <div class="col-5 mx-auto my-auto">
 
         <h1>Book {{ car }}</h1>
         <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit">Submit</button>
+          <button type="submit">Rent</button>
         </form>
 
       </div>
-    </div>
+    <span class="mask bg-gradient-info opacity-2"></span>
   </div>
 </header>
 {% endblock content %}

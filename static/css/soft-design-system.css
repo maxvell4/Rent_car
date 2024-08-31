@@ -8974,7 +8974,7 @@ fieldset:disabled .btn {
 }
 
 .min-vh-75 {
-    min-height: 100vh !important;
+    min-height: 75vh !important;
 }
 
 .min-vh-80 {
