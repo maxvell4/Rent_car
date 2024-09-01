@@ -11,10 +11,10 @@
   <div class="col-5 mx-auto my-auto">
 
         <h1>Book {{ car }}</h1>
-        <form method="post">
+        <form method="post" class="form_text">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit">Rent</button>
+          <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Rent</button>
         </form>
 
       </div>

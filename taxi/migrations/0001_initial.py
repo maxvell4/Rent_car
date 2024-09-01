@@ -65,15 +65,4 @@ class Migration(migrations.Migration):
                 ('manufacturer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='taxi.manufacturer')),
             ],
         ),
-        migrations.CreateModel(
-            name='Booking',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('start_date', models.DateField()),
-                ('end_date', models.DateField()),
-                ('name', models.CharField(max_length=100)),
-                ('email', models.EmailField(max_length=254)),
-                ('car', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='taxi.car')),
-            ],
-        ),
-    ]
+       ]
