@@ -13,7 +13,7 @@ urlpatterns = [
     path("", index, name="index"),
     path('about-us/', about_us, name='about-us'),
     path('contact-us/', contact_us, name='contact-us'),
-    path('rent/<int:car_id>/', views.rent_car, name='rent_car'),
+    path('rent-car/<int:car_id>/', views.rent_car, name='rent_car'),
     path('success/', views.success, name='success'),
     path('car/<int:car_id>/', views.car_photo, name='car_detail'),
 

@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
@@ -51,11 +52,12 @@ def rent_car(request, car_id):
             booking = form.save(commit=False)
             booking.car = car
             booking.save()
-            return redirect('success')
+            messages.success(request, f'Congratulations! You have booked {car.model}')
+
     else:
         form = BookingForm()
 
-    return render(request, 'taxi/rent_form.html', {'form': form, 'car': car})
+    return render(request, 'taxi/car_rent.html', {'form': form, 'car': car})
 
 #
 # def car_details(request, car_id):
@@ -70,11 +72,11 @@ def car_photo(request, car_id):
 
 
 def success(request):
-    return render(request, 'taxi/success.html')
+    return render(request, 'pages/index.html')
 
 
 # def author(request):
-#     return render(request, 'pages/rent_form.html')
+#     return render(request, 'pages/car_rent.html')
 
 
 # class ManufacturerListView(LoginRequiredMixin, generic.ListView):
