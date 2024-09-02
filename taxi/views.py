@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
@@ -19,8 +20,10 @@ def index(request):
     num_drivers = Driver.objects.count()
     num_cars = Car.objects.count()
     num_manufacturers = Manufacturer.objects.count()
-    cars = Car.objects.all()
-
+    cars = Car.objects.all().order_by('id')
+    paginator = Paginator(cars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
 
@@ -30,6 +33,7 @@ def index(request):
         "num_manufacturers": num_manufacturers,
         "num_visits": num_visits + 1,
         "cars": cars,
+        "page_obj": page_obj,
     }
 
     return render(request, "pages/index.html", context=context)
