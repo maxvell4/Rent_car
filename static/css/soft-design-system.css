@@ -128,6 +128,18 @@ h6,
     color: var(--bs-heading-color);
 }
 
+.anime {
+
+      background-color: lightgrey;
+      transition: transform 0.7s ease, box-shadow 0.3s ease;
+}
+
+.anime:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 16px rgba(0, 0, 0, 0.3);
+
+}
+
 .form_text label {
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -5173,7 +5185,10 @@ fieldset:disabled .btn {
 .card > hr {
     margin-right: 0;
     margin-left: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
 }
+
 
 .card > .list-group {
     border-top: inherit;
@@ -20882,6 +20897,7 @@ fieldset:disabled .btn {
     background-clip: border-box;
     border: var(--bs-frame-border-width) solid var(--bs-frame-border-color);
     border-radius: var(--bs-frame-border-radius)
+
 
 
 }
