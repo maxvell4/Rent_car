@@ -48,7 +48,7 @@ class CarInsideImage(models.Model):
 
 
 class Booking(models.Model):
-    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="car")
     start_date = models.DateField()
     end_date = models.DateField()
     name = models.CharField(max_length=100)

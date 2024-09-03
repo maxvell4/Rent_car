@@ -1,16 +1,18 @@
 from django.contrib import messages
-# from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
-# from django.urls import reverse_lazy
-# from django.views import generic
-# from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.shortcuts import get_object_or_404
 from .models import Driver, Car, Manufacturer
 from django.shortcuts import render, redirect
-from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
-from taxi.forms import RegistrationForm, UserLoginForm, UserPasswordResetForm, UserSetPasswordForm, \
-    UserPasswordChangeForm, BookingForm
+from django.contrib.auth.views import (LoginView,
+                                       PasswordResetView,
+                                       PasswordChangeView,
+                                       PasswordResetConfirmView)
+from taxi.forms import (RegistrationForm,
+                        UserLoginForm,
+                        UserPasswordResetForm,
+                        UserSetPasswordForm,
+                        UserPasswordChangeForm,
+                        BookingForm)
 from django.contrib.auth import logout
 
 
@@ -62,6 +64,7 @@ def rent_car(request, car_id):
         form = BookingForm()
 
     return render(request, 'taxi/car_rent.html', {'form': form, 'car': car})
+
 
 def car_photo(request, car_id):
     car = get_object_or_404(Car, id=car_id)
